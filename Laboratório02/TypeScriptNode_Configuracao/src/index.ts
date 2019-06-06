@@ -1,3 +1,5 @@
+import { stringify } from "querystring";
+
 //Laboratórios 2
 
 // 1. Escreva um trecho de código para imprimir os números pares definidos por um intervalo de valores inteiros
@@ -51,31 +53,46 @@
 // Apresente uma versão iterativa e uma versão recursiva para a função. Não utilize o operador **.
 // Utilize corretamente a declaração de tipos nos parâmetros e no resultado da função.
 
-function pow(x: number, y: number): number{
+// function pow(x: number, y: number): number{
 
-    if( !(Number.isInteger(x)) || !(Number.isInteger(y))) return 0;
-    if( x <= 0 || y <= 0) return 0;
-    if( y == 0 ) return 1;
+//     if( !(Number.isInteger(x)) || !(Number.isInteger(y))) return 0;
+//     if( x <= 0 || y <= 0) return 0;
+//     if( y == 0 ) return 1;
 
-    let resultado : number = x;
+//     let resultado : number = x;
 
-// //versão iterativa
-// for(let i = y - 1; i > 0; i--){
-// resultado = resultado * x;
+// // //versão iterativa
+// // for(let i = y - 1; i > 0; i--){
+// // resultado = resultado * x;
+// // }
+// // return resultado;
+
+// //versão recursiva
+// function powRecursivo(x: number, y: number): number{
+
+//     if(y == 1) return x;
+//     return x * powRecursivo(x, y - 1);
 // }
-// return resultado;
+// return powRecursivo(x,y)
+// }
 
-//versão recursiva
-function powRecursivo(x: number, y: number): number{
+// console.log(pow(3,3))
 
-    if(y == 1) return x;
-    return x * powRecursivo(x, y - 1);
+// 5. Escreva uma função toMaiusculaPrimeira(s) que recebe uma string s (assuma qualquer string não vazia)
+// e retorna a mesma string com a primeira letra em maiúscula.
+// Utilize corretamente a declaração de tipos nos parâmetros e no resultado da função.
+
+function toMaiusculaPrimeira(s: string): string{
+
+    if(s == "")return "vazia";
+
+    //v1
+    return s.charAt(0).toLocaleUpperCase() + s.substring(1,s.length);
+    //v2
+    //return s.replace(s.charAt(0), s.charAt(0).toLocaleUpperCase());
 }
-return powRecursivo(x,y)
-}
 
-console.log(pow(3,3))
+console.log(toMaiusculaPrimeira("marcia"));
 
-// 5. Escreva uma função toMaiusculaPrimeira(s) que recebe uma string s (assuma qualquer string não vazia) e retorna a mesma string com a primeira letra em maiúscula. Utilize corretamente a declaração de tipos nos parâmetros e no resultado da função.
 // 6. Escreva uma função getMax(arr) que recebe um array de número inteiros e retorna o maior elemento encontrado no array. Assuma que o array não está vazio. Não utilize funções auxiliares de outros objetos disponibilizados pelo TypeScript. Utilize corretamente a declaração de tipos nos parâmetros e no resultado da função.
 // 7. Escreva uma função que, utilizando objetos Map, calcule a frequência de cada número presente em um determinado array contendo números inteiros. Utilize corretamente a declaração de tipos nos parâmetros e no resultado da função.
