@@ -82,17 +82,33 @@ import { stringify } from "querystring";
 // e retorna a mesma string com a primeira letra em maiúscula.
 // Utilize corretamente a declaração de tipos nos parâmetros e no resultado da função.
 
-function toMaiusculaPrimeira(s: string): string{
+// function toMaiusculaPrimeira(s: string): string{
 
-    if(s == "")return "vazia";
+//     if(s == "")return "vazia";
 
-    //v1
-    return s.charAt(0).toLocaleUpperCase() + s.substring(1,s.length);
-    //v2
-    //return s.replace(s.charAt(0), s.charAt(0).toLocaleUpperCase());
+//     //v1
+//     return s.charAt(0).toLocaleUpperCase() + s.substring(1,s.length);
+//     //v2
+//     //return s.replace(s.charAt(0), s.charAt(0).toLocaleUpperCase());
+// }
+
+// console.log(toMaiusculaPrimeira("marcia"));
+
+// 6. Escreva uma função getMax(arr) que recebe um array de número inteiros e retorna o maior elemento
+// encontrado no array. Assuma que o array não está vazio. Não utilize funções auxiliares de outros objetos
+// disponibilizados pelo TypeScript. Utilize corretamente a declaração de tipos nos parâmetros 
+//e no resultado da função.
+
+function getMax(arr: number[]): number {
+
+    let max : number = arr[0];
+
+    for(let valor of arr){
+        if( max < valor) max = valor;
+    }
+    return max;
 }
 
-console.log(toMaiusculaPrimeira("marcia"));
+console.log(getMax([2,10,8,20,25]));
 
-// 6. Escreva uma função getMax(arr) que recebe um array de número inteiros e retorna o maior elemento encontrado no array. Assuma que o array não está vazio. Não utilize funções auxiliares de outros objetos disponibilizados pelo TypeScript. Utilize corretamente a declaração de tipos nos parâmetros e no resultado da função.
 // 7. Escreva uma função que, utilizando objetos Map, calcule a frequência de cada número presente em um determinado array contendo números inteiros. Utilize corretamente a declaração de tipos nos parâmetros e no resultado da função.
