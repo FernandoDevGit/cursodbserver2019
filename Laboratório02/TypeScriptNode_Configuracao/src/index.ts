@@ -115,27 +115,34 @@ import { stringify } from "querystring";
 // em um determinado array contendo números inteiros. Utilize corretamente a declaração de tipos
 // nos parâmetros e no resultado da função.
 
-function freq(arr: number[]): Map<number,number>{
+// function freq(arr: number[]): Map<number,number>{
 
-   let mapFreq = new Map<number,number>();
+//    let mapFreq = new Map<number,number>();
 
-    for(let valor of arr){
+//     for(let valor of arr){
 
-        if(mapFreq.has(valor)){
+//         if(mapFreq.has(valor)){
+
+////dica professor
+//// mapfreq.get(valor)! + 1 - remove o null e o undefined do tipo
+//// (mapfreq.get(valor)||0)+1 - se retornar um null ou undefined escolhe o 0
             
-            let cont =  mapFreq.get(valor);
-            if(cont != null){
-            cont = cont + 1;
-            }
-            else cont = 1;
+//             let cont =  mapFreq.get(valor);
+//             if(cont != null){
+//             cont = cont + 1;
+//             }
+//             else cont = 1;
 
-            mapFreq.set(valor, cont);
-        }
-        else{
-            mapFreq.set(valor,1);
-        }
-    }
-   return mapFreq;
-}
+//             mapFreq.set(valor, cont);
+//         }
+//         else{
+//             mapFreq.set(valor,1);
+//         }
+//     }
+//    return mapFreq;
+// }
 
-console.log(freq([1,1,1,5,6,6,8,8]));
+// console.log(freq([1,1,1,5,6,6,8,8]));
+
+
+console.log(undefined||0)
