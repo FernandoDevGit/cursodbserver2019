@@ -99,16 +99,43 @@ import { stringify } from "querystring";
 // disponibilizados pelo TypeScript. Utilize corretamente a declaração de tipos nos parâmetros 
 //e no resultado da função.
 
-function getMax(arr: number[]): number {
+// function getMax(arr: number[]): number {
 
-    let max : number = arr[0];
+//     let max : number = arr[0];
+
+//     for(let valor of arr){
+//         if( max < valor) max = valor;
+//     }
+//     return max;
+// }
+
+// console.log(getMax([2,10,8,20,25]));
+
+// 7. Escreva uma função que, utilizando objetos Map, calcule a frequência de cada número presente
+// em um determinado array contendo números inteiros. Utilize corretamente a declaração de tipos
+// nos parâmetros e no resultado da função.
+
+function freq(arr: number[]): Map<number,number>{
+
+   let mapFreq = new Map<number,number>();
 
     for(let valor of arr){
-        if( max < valor) max = valor;
+
+        if(mapFreq.has(valor)){
+            
+            let cont =  mapFreq.get(valor);
+            if(cont != null){
+            cont = cont + 1;
+            }
+            else cont = 1;
+
+            mapFreq.set(valor, cont);
+        }
+        else{
+            mapFreq.set(valor,1);
+        }
     }
-    return max;
+   return mapFreq;
 }
 
-console.log(getMax([2,10,8,20,25]));
-
-// 7. Escreva uma função que, utilizando objetos Map, calcule a frequência de cada número presente em um determinado array contendo números inteiros. Utilize corretamente a declaração de tipos nos parâmetros e no resultado da função.
+console.log(freq([1,1,1,5,6,6,8,8]));
