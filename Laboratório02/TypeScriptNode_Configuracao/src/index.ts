@@ -1,5 +1,3 @@
-import { stringify } from "querystring";
-
 //Laboratórios 2
 
 // 1. Escreva um trecho de código para imprimir os números pares definidos por um intervalo de valores inteiros
@@ -143,6 +141,3 @@ import { stringify } from "querystring";
 // }
 
 // console.log(freq([1,1,1,5,6,6,8,8]));
-
-
-console.log(undefined||0)
