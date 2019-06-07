@@ -4,7 +4,17 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        // rodar npm run prod para criar os aquivos javascript
 
+        // {
+        //     "type": "node",
+        //     "request": "launch",
+        //     "name": "Launch Program",
+        //     "program": "${workspaceFolder}\\Laboratório01\\TypeScriptNode_Configuracao\\src\\index.ts",
+        //     "outFiles": [
+        //         "${workspaceFolder}/**/*.js"
+        //     ]
+        // },
         {
             "type": "node",
             "request": "launch",
@@ -12,25 +22,7 @@
             "program": "${workspaceFolder}\\Laboratório02\\TypeScriptNode_Configuracao\\src\\index.ts",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
-            ]      
+            ]
         }
-
-        // {
-        //     "type": "node",
-        //     "request": "launch",
-        //     "name": "Launch Program",
-        //     "program": "${workspaceFolder}/server/app.js"
-        // },
-
-        // {
-        //     "type": "node",
-        //     "request": "launch",
-        //     "name": "Launch Program",
-        //     "program": "${workspaceFolder}\\TypeNode_Configuracao\\src\\index.ts",
-        //     "outFiles": [
-        //         "${workspaceFolder}/**/*.js"
-        //     ]
-        // }
-
     ]
 }
