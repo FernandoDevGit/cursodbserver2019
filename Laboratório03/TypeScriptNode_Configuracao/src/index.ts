@@ -38,6 +38,75 @@ import { stringify } from "querystring";
 //de acesso ou propriedades de leitura. Utilize uma coleção adequada para implementar a
 // coleção de moedas na classe Cofrinho.
 
+// class Moeda {
+
+//     readonly valor: number;
+//     readonly nome: string;
+
+//     constructor (nome: string, valor: number ){
+//         this.valor = valor;
+//         this.nome = nome;
+//     }
+
+//     private getNome(): string{
+//         return this.nome;
+//     }
+
+//     private getValor(): number{
+//         return this.valor;
+//     }
+// }
+
+// class Cofrinho {
+
+//     private cofrinho: Moeda[];
+
+//     constructor(){
+//         this.cofrinho = [];
+//     }
+
+
+//     adicionar(moeda: Moeda):void{
+
+//         this.cofrinho.push(moeda);        
+//     }
+
+//     calcularTotal(): number{
+        
+//         let total: number = 0;
+
+//         for(let valor of this.cofrinho){
+//             total = total + valor.valor;
+//         }
+//         return total;
+//     }
+// }
+
+// //b) Escreva um bloco de código para testar a implementação.
+
+// let moedaUm = new Moeda("dez",10);
+// let moedaDois = new Moeda("dez",10);
+// let moedaTres = new Moeda("cinquenta",50);
+
+// let cofrinho = new Cofrinho();
+// cofrinho.adicionar(moedaUm);
+// cofrinho.adicionar(moedaDois);
+// cofrinho.adicionar(moedaTres);
+
+// console.log(cofrinho.calcularTotal());
+
+// //c) Utilize um código para serializar um objeto Cofrinho em JSON e procure entender
+// // o formato de string que foi construído.
+
+// let cofrinhoJson = JSON.stringify(cofrinho);
+// console.log(cofrinhoJson);
+
+//3. Altere a implementação da classe Cofrinho do exercício anterior para incluir:
+//• Método que retorna o valor da menor moeda armazenada.
+//• Método que retorna uma instância da menor moeda armazenada.
+//• Método que retorna um mapa/dicionário com a frequência (o número de moedas)
+//de cada moeda existente (1 centavo, 5 centavos, 10 centavos, 25 centavos, 50 centavos, 1 real) no cofrinho.
+
 class Moeda {
 
     readonly valor: number;
@@ -65,38 +134,90 @@ class Cofrinho {
         this.cofrinho = [];
     }
 
-
     adicionar(moeda: Moeda):void{
 
         this.cofrinho.push(moeda);        
     }
 
-    calcularTotal(): number{
-        
-        let total: number = 0;
+    menorMoedaV1(): number {
 
-        for(let valor of this.cofrinho){
-            total = total + valor.valor;
+        if(this.cofrinho.length == 0) return 0;
+        let menor: number = this.cofrinho[0].valor;
+
+        for(let moeda of this.cofrinho){
+            if(moeda.valor < menor) menor = moeda.valor;
         }
-        return total;
+        return menor;
+    }
+
+    menorMoedaV2(): Moeda{
+
+        let menorMoeda: Moeda = new Moeda("vazia",0);
+
+        if(this.cofrinho.length == 0){
+            return menorMoeda;
+        }
+
+        menorMoeda = this.cofrinho[0];
+
+        for(let moeda of this.cofrinho){
+            if(moeda.valor < menorMoeda.valor) menorMoeda = moeda;
+        }
+
+        return menorMoeda;
+    }
+
+    frequenciaMoedas(): Map<string, number>{
+
+        let frequencia: Map<string, number> = new Map;
+
+        for(let moeda of this.cofrinho){
+
+            if(frequencia.has(moeda.nome)){
+                frequencia.set(moeda.nome,frequencia.get(moeda.nome)! + 1)
+            }
+            else frequencia.set(moeda.nome, 1);
+        }        
+        return frequencia;        
     }
 }
 
-//b) Escreva um bloco de código para testar a implementação.
+let moedaUm : Moeda = new Moeda("1 centavo",1);
+let moedaUm2 : Moeda = new Moeda("1 centavo",1);
+let moedaUm3 : Moeda = new Moeda("1 centavo",1);
+let moedaCinco : Moeda = new Moeda("5 centavos",5);
+let moedaDez : Moeda = new Moeda("10 centavos",10);
+let moedaVinteCinco : Moeda = new Moeda("25 centavos",25);
+let moedaCinquenta : Moeda = new Moeda("50 centavos",50);
+let moedaCinquenta2 : Moeda = new Moeda("50 centavos",50);
+let moedaCinquenta3 : Moeda = new Moeda("50 centavos",50);
+let moedaReal : Moeda = new Moeda("1 real",100);
 
-let moedaUm = new Moeda("dez",10);
-let moedaDois = new Moeda("dez",10);
-let moedaTres = new Moeda("cinquenta",50);
+let cofre: Cofrinho = new Cofrinho();
 
-let cofrinho = new Cofrinho();
-cofrinho.adicionar(moedaUm);
-cofrinho.adicionar(moedaDois);
-cofrinho.adicionar(moedaTres);
+cofre.adicionar(moedaUm);
+cofre.adicionar(moedaUm2);
+cofre.adicionar(moedaUm3);
+cofre.adicionar(moedaCinco);
+cofre.adicionar(moedaDez);
+cofre.adicionar(moedaDez);
+cofre.adicionar(moedaVinteCinco);
+cofre.adicionar(moedaCinquenta);
+cofre.adicionar(moedaCinquenta2);
+cofre.adicionar(moedaCinquenta3);
+cofre.adicionar(moedaReal);
 
-console.log(cofrinho.calcularTotal());
+console.log(cofre.menorMoedaV1())
 
-//c) Utilize um código para serializar um objeto Cofrinho em JSON e procure entender
-// o formato de string que foi construído.
+console.log(cofre.menorMoedaV2())
 
-let cofrinhoJson = JSON.stringify(cofrinho);
-console.log(cofrinhoJson);
+console.log(cofre.frequenciaMoedas())
+
+
+
+
+
+
+
+
+
