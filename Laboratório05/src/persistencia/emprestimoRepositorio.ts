@@ -4,8 +4,8 @@ import { EmprestimoModel }from "./emprestimoModel";
 export class emprestimoRepositorio {
 
     
-    static async criar(autor: Autor): Promise<Autor> {
-        let novoAutor = await AutorModel.create(autor);
-        return novoAutor.save();
+    static async criar(emprestimo: Emprestimo): Promise<Emprestimo> {
+        let novoEmprestimo = await EmprestimoModel.create(emprestimo);
+        return novoEmprestimo.save();
     }
 }
