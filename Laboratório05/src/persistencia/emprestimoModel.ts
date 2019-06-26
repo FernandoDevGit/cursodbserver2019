@@ -1,5 +1,6 @@
 import { Emprestimo } from "../entidades/emprestimo";
 import { Document, Schema, model, SchemaTypes, Model } from "mongoose";
+import { ObjectID } from "bson";
 
 interface EmprestimoDocument extends Emprestimo, Document {}
 

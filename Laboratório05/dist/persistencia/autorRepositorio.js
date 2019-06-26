@@ -22,10 +22,22 @@ class AutorRepositorio {
             return consulta.exec();
         });
     }
-    static buscarAutores(nome) {
+    static buscaAutoresUltimoNome(nome) {
         return __awaiter(this, void 0, void 0, function* () {
-            let consulta = autorModel_1.AutorModel.find().where('ultimo_nome').equals(nome);
-            return [];
+            let consulta = yield autorModel_1.AutorModel.find().where('ultimo_nome').equals(nome).exec();
+            return consulta;
+        });
+    }
+    static buscaAutoresPrimeiroNome(nome) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let consulta = yield autorModel_1.AutorModel.find().where('primeiro_nome').equals(nome).exec();
+            return consulta;
+        });
+    }
+    static mudaRegistro(nome) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let autor = yield autorModel_1.AutorModel.updateOne({ primeiro_nome: nome }, { $set: { ultimo_nome: "John" } }).exec();
+            return autor;
         });
     }
 }

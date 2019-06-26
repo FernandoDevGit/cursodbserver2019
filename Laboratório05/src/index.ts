@@ -47,29 +47,31 @@ async function main() {
 
         //4a2) criar e armazenar um novo empréstimo no banco de dados, retornando o empréstimo criado;
 
-        //let idLivro : ObjectID = new ObjectID("5d095c0502957644b86243c7");
-        let livroE = await LivroRepositorio.criar({titulo: "Arvore cinza",autores:[]});
+        // let livroE = await LivroRepositorio.criar({titulo: "Arvore preta",autores:[]});
 
-        let dataRetirada : Date = new Date();
-        let dataEntrega : Date = new Date();
-        dataEntrega.setHours(7*24);
+        // let dataRetirada : Date = new Date();
+        // let dataEntrega : Date = new Date();
+        // dataEntrega.setHours(7*24);
+        // let _idd : ObjectID = new ObjectID(555);
 
-        let emprestimo = await emprestimoRepositorio.criar({livro: livroE, dataRetirada, dataEntrega});
+        // let emprestimo = await emprestimoRepositorio.criar({livro: livroE, dataRetirada, dataEntrega});
 
-        console.log(emprestimo);
+        // console.log(emprestimo);
 
-        // let x : Date = new Date();
-
-        // console.log(x);
-        // x.setHours(7*24);
-
-        // console.log(x);
-
-        //Date.now() + (100 * 1000);
-
-        //console.log(emprestimo);
         //4b2) consultar o banco de dados e retornar um array com todos os empréstimos;
+
+        // let resultado = await emprestimoRepositorio.buscar();
+
+        // console.log(resultado);
+
         //4c1) alterar os dados de um determinado empréstimo no banco de dados.
+
+        let idEmprestimo : ObjectID = new ObjectID("5d0cfd191e66232068954d36");
+        let novaData : Date = new Date();
+
+        let resultado = await emprestimoRepositorio.mudaDataDeEntrega(novaData,idEmprestimo);
+
+        console.log(resultado);
 
         //console.log('criando empréstimos');
 
