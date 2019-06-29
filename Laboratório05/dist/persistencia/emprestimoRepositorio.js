@@ -22,10 +22,18 @@ class emprestimoRepositorio {
             return consulta.exec();
         });
     }
-    static mudaDataDeEntrega(id, novaData) {
+    static mudaDataDeEntrega(novaData, idEmprestimo) {
         return __awaiter(this, void 0, void 0, function* () {
-            let Emprestimo = yield emprestimoModel_1.EmprestimoModel.updateOne({ id_: id }, { $set: { mudaDataDeEntrega: novaData } }).exec();
-            return Emprestimo;
+            let Emprestimo = yield emprestimoModel_1.EmprestimoModel.findById(idEmprestimo).exec();
+            if (Emprestimo != null) {
+                Emprestimo.dataEntrega = novaData;
+                yield Emprestimo.save();
+                return Emprestimo;
+            }
+            else {
+                let EmprestimoP = new emprestimoModel_1.EmprestimoModel();
+                return EmprestimoP;
+            }
         });
     }
 }

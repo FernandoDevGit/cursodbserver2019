@@ -9,8 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
-const bson_1 = require("bson");
-const emprestimoRepositorio_1 = require("./persistencia/emprestimoRepositorio");
+const negocio_1 = require("./negocio");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const url = 'mongodb://localhost:27017/biblioteca';
@@ -38,21 +37,34 @@ function main() {
             // let livros = await LivroRepositorio.buscaLivrosAutor(idAutor);
             // livros.forEach(livro => console.log(livro));
             //4a2) criar e armazenar um novo empréstimo no banco de dados, retornando o empréstimo criado;
-            // let livroE = await LivroRepositorio.criar({titulo: "Arvore cinza",autores:[]});
+            // let livroE = await LivroRepositorio.criar({titulo: "Arvore preta",autores:[]});
             // let dataRetirada : Date = new Date();
             // let dataEntrega : Date = new Date();
             // dataEntrega.setHours(7*24);
+            // let _idd : ObjectID = new ObjectID(555);
             // let emprestimo = await emprestimoRepositorio.criar({livro: livroE, dataRetirada, dataEntrega});
             // console.log(emprestimo);
             //4b2) consultar o banco de dados e retornar um array com todos os empréstimos;
-            //let resultado = await emprestimoRepositorio.buscar();
+            // let resultado = await emprestimoRepositorio.buscar();
             // console.log(resultado);
             //4c1) alterar os dados de um determinado empréstimo no banco de dados.
-            let idEmprestimo = new bson_1.ObjectID("5d0cfd191e66232068954d36");
-            let novaData = new Date();
-            let resultado = yield emprestimoRepositorio_1.emprestimoRepositorio.mudaDataDeEntrega(idEmprestimo, novaData);
-            console.log(resultado);
+            // let idEmprestimo : ObjectID = new ObjectID("5d0cfd191e66232068954d36");
+            // let novaData : Date = new Date();
+            // let resultado = await emprestimoRepositorio.mudaDataDeEntrega(novaData,idEmprestimo);
+            // console.log(resultado);
             //console.log('criando empréstimos');
+            //------------------------------------------------------------------------------------------------------------
+            //5)Crie uma biblioteca de funções de negócio (em um novo arquivo “negocio,js”) para manipular as operações
+            //sobre uma biblioteca.Defina as seguintes funções:
+            //console.log(await consultarLivros());
+            yield negocio_1.consultarLivros();
+            //• consultarLivros() – para retornar um array com todos os livros da biblioteca, junto com a 
+            //informação de que estão disponíveis ou não e, se estiverem indisponíveis, a data de entrega futura;
+            //• emprestarLivro(id_livro) – para criar um novo empréstimo caso o livro esteja disponível e marcar 
+            //como data futura de entrega 7 dias a partir da data de empréstimo;
+            //• devolverLivro(id_livro) – para efetuar a devolução de um livro e calcular o valor da multa associada
+            //caso a entrega do livro tenha sido realizada em uma data posterior à data prevista de entrega
+            //(defina um valor qualquer de multa por dia de atraso).
             //-------------------------------------------------------------------------------------
             // console.log('Buscando autores...');
             // let autores = await AutorRepositorio.buscar();

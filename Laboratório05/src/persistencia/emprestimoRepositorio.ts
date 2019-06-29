@@ -1,6 +1,7 @@
 import { Emprestimo } from "../entidades/emprestimo";
 import { EmprestimoModel }from "./emprestimoModel";
 import { ObjectId } from "bson";
+import { LivroModel } from "./livroModel";
 
 export class emprestimoRepositorio {
     
@@ -11,7 +12,8 @@ export class emprestimoRepositorio {
     }
 
     static async buscar(): Promise<Emprestimo[]> {
-        let consulta = EmprestimoModel.find();
+        let consulta = EmprestimoModel.find().populate("livro",LivroModel);
+        
         return consulta.exec();
     }
 

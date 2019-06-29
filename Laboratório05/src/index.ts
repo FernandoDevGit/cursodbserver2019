@@ -6,6 +6,7 @@ import { Autor } from './entidades/autor';
 import { ObjectID } from 'bson';
 import { emprestimoRepositorio } from './persistencia/emprestimoRepositorio';
 import { LivroModel } from './persistencia/livroModel';
+import {consultarLivros } from './negocio';
 
 
 async function main() {
@@ -66,14 +67,32 @@ async function main() {
 
         //4c1) alterar os dados de um determinado empréstimo no banco de dados.
 
-        let idEmprestimo : ObjectID = new ObjectID("5d0cfd191e66232068954d36");
-        let novaData : Date = new Date();
+        // let idEmprestimo : ObjectID = new ObjectID("5d0cfd191e66232068954d36");
+        // let novaData : Date = new Date();
 
-        let resultado = await emprestimoRepositorio.mudaDataDeEntrega(novaData,idEmprestimo);
+        // let resultado = await emprestimoRepositorio.mudaDataDeEntrega(novaData,idEmprestimo);
 
-        console.log(resultado);
+        // console.log(resultado);
 
         //console.log('criando empréstimos');
+
+        //------------------------------------------------------------------------------------------------------------
+
+        //5)Crie uma biblioteca de funções de negócio (em um novo arquivo “negocio,js”) para manipular as operações
+        //sobre uma biblioteca.Defina as seguintes funções:        
+
+        //A• consultarLivros() – para retornar um array com todos os livros da biblioteca, junto com a 
+        //informação de que estão disponíveis ou não e, se estiverem indisponíveis, a data de entrega futura;
+
+        console.log(await consultarLivros());
+
+        //• emprestarLivro(id_livro) – para criar um novo empréstimo caso o livro esteja disponível e marcar 
+        //como data futura de entrega 7 dias a partir da data de empréstimo;
+
+        //• devolverLivro(id_livro) – para efetuar a devolução de um livro e calcular o valor da multa associada
+        //caso a entrega do livro tenha sido realizada em uma data posterior à data prevista de entrega
+        //(defina um valor qualquer de multa por dia de atraso).
+
 
         //-------------------------------------------------------------------------------------
         
