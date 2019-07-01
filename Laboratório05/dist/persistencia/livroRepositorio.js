@@ -22,6 +22,12 @@ class LivroRepositorio {
             return livros.exec();
         });
     }
+    static buscaLivroId(idLivro) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let livro = yield livroModel_1.LivroModel.findById(idLivro).exec();
+            return livro;
+        });
+    }
     static buscaLivrosAutor(id) {
         return __awaiter(this, void 0, void 0, function* () {
             let livros = livroModel_1.LivroModel.find({ autores: id }).exec();

@@ -9,6 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
+const bson_1 = require("bson");
+const emprestimoRepositorio_1 = require("./persistencia/emprestimoRepositorio");
 const negocio_1 = require("./negocio");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -55,11 +57,15 @@ function main() {
             //console.log('criando empréstimos');
             //------------------------------------------------------------------------------------------------------------
             //5)Crie uma biblioteca de funções de negócio (em um novo arquivo “negocio,js”) para manipular as operações
-            //sobre uma biblioteca.Defina as seguintes funções:
+            //sobre uma biblioteca.Defina as seguintes funções:        
+            //A• consultarLivros() – para retornar um array com todos os livros da biblioteca, junto com a 
+            //informação de que estão disponíveis ou não e, se estiverem indisponíveis, ad data de entrega futura;
             //console.log(await consultarLivros());
-            yield negocio_1.consultarLivros();
-            //• consultarLivros() – para retornar um array com todos os livros da biblioteca, junto com a 
-            //informação de que estão disponíveis ou não e, se estiverem indisponíveis, a data de entrega futura;
+            let idLivro = new bson_1.ObjectID("5d095c0502957644b86243c8");
+            //console.log(await emprestarLivro(idEmprestimo));
+            console.log(yield emprestimoRepositorio_1.emprestimoRepositorio.verificarEmprestimo(idLivro));
+            console.log(yield negocio_1.emprestarLivro(idLivro));
+            //console.log(emprestimoRepositorio.buscar());
             //• emprestarLivro(id_livro) – para criar um novo empréstimo caso o livro esteja disponível e marcar 
             //como data futura de entrega 7 dias a partir da data de empréstimo;
             //• devolverLivro(id_livro) – para efetuar a devolução de um livro e calcular o valor da multa associada

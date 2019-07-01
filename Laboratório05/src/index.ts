@@ -6,7 +6,7 @@ import { Autor } from './entidades/autor';
 import { ObjectID } from 'bson';
 import { emprestimoRepositorio } from './persistencia/emprestimoRepositorio';
 import { LivroModel } from './persistencia/livroModel';
-import {consultarLivros } from './negocio';
+import {consultarLivros,emprestarLivro, } from './negocio';
 
 
 async function main() {
@@ -82,12 +82,15 @@ async function main() {
         //sobre uma biblioteca.Defina as seguintes funções:        
 
         //A• consultarLivros() – para retornar um array com todos os livros da biblioteca, junto com a 
-        //informação de que estão disponíveis ou não e, se estiverem indisponíveis, a data de entrega futura;
+        //informação de que estão disponíveis ou não e, se estiverem indisponíveis, ad data de entrega futura;
 
-        console.log(await consultarLivros());
+        console.log(await consultarLivros()); 
 
         //• emprestarLivro(id_livro) – para criar um novo empréstimo caso o livro esteja disponível e marcar 
         //como data futura de entrega 7 dias a partir da data de empréstimo;
+
+        // let idLivro : ObjectID = new ObjectID("5d095c0502957644b86243c8");
+        // console.log(await emprestarLivro(idLivro));
 
         //• devolverLivro(id_livro) – para efetuar a devolução de um livro e calcular o valor da multa associada
         //caso a entrega do livro tenha sido realizada em uma data posterior à data prevista de entrega

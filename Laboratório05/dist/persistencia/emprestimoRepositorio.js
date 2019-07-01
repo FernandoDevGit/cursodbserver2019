@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const emprestimoModel_1 = require("./emprestimoModel");
+const livroModel_1 = require("./livroModel");
 class emprestimoRepositorio {
     static criar(emprestimo) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -18,8 +19,17 @@ class emprestimoRepositorio {
     }
     static buscar() {
         return __awaiter(this, void 0, void 0, function* () {
-            let consulta = emprestimoModel_1.EmprestimoModel.find();
+            let consulta = emprestimoModel_1.EmprestimoModel.find().populate("livro", livroModel_1.LivroModel);
             return consulta.exec();
+        });
+    }
+    static verificarEmprestimo(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let consulta = yield emprestimoModel_1.EmprestimoModel.find({ livro: id }).exec();
+            if (consulta.length != 0) {
+                return true;
+            }
+            return false;
         });
     }
     static mudaDataDeEntrega(novaData, idEmprestimo) {
@@ -31,8 +41,7 @@ class emprestimoRepositorio {
                 return Emprestimo;
             }
             else {
-                let EmprestimoP = new emprestimoModel_1.EmprestimoModel();
-                return EmprestimoP;
+                return null;
             }
         });
     }

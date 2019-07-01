@@ -2,6 +2,7 @@ import { Emprestimo } from "../entidades/emprestimo";
 import { EmprestimoModel }from "./emprestimoModel";
 import { ObjectId } from "bson";
 import { LivroModel } from "./livroModel";
+import { Livro } from "../entidades/livro";
 
 export class emprestimoRepositorio {
     
@@ -17,7 +18,18 @@ export class emprestimoRepositorio {
         return consulta.exec();
     }
 
-    static async mudaDataDeEntrega( novaData: Date,idEmprestimo: ObjectId): Promise<Emprestimo>{
+    static async verificarEmprestimo(id: ObjectId): Promise<boolean>{
+
+         let consulta = await  EmprestimoModel.find({ livro: id }).exec();
+
+         if(consulta.length != 0){
+             return true;
+         }
+        return false;
+    }
+
+
+    static async mudaDataDeEntrega( novaData: Date,idEmprestimo: ObjectId): Promise<Emprestimo|null>{
 
         let Emprestimo = await EmprestimoModel.findById(idEmprestimo).exec();
 
@@ -27,9 +39,10 @@ export class emprestimoRepositorio {
             return Emprestimo;
         }
         else{
-        let EmprestimoP : Emprestimo = new EmprestimoModel();           
-        return EmprestimoP;
+            return null;
         }
     }  
+
+
     
 }
