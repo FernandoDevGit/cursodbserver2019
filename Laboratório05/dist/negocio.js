@@ -50,11 +50,29 @@ function emprestarLivro(idLivro) {
                 return "emprestimo realizado";
             }
         }
-        return "emprestimo não realizado";
+        return "não realizado - livro já emprestado ";
     });
 }
 exports.emprestarLivro = emprestarLivro;
 //• devolverLivro(id_livro) – para efetuar a devolução de um livro e calcular o valor da multa associada
 //caso a entrega do livro tenha sido realizada em uma data posterior à data prevista de entrega
 //(defina um valor qualquer de multa por dia de atraso).
+function devolverLivro(idLivro) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let emprestimo = yield emprestimoRepositorio_1.emprestimoRepositorio.buscarEmprestimoLivroId(idLivro);
+        let multa = 5;
+        let dataAtual = new Date();
+        if (emprestimo == null)
+            return "não existe emprestimos com esse titulo";
+        let dia = 1000 * 60 * 60 * 24;
+        let diasMulta = (Math.abs(emprestimo.dataEntrega.getTime() - dataAtual.getTime())) / dia;
+        if (diasMulta > 0) {
+            return "entrega atrasa: " + diasMulta.toFixed(0) + " dias - multa: " + (diasMulta * multa).toFixed(2);
+        }
+        else {
+            return "entrega realizada - sem multa";
+        }
+    });
+}
+exports.devolverLivro = devolverLivro;
 //# sourceMappingURL=negocio.js.map

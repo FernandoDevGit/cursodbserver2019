@@ -63,4 +63,23 @@ export async function emprestarLivro(idLivro: ObjectId){
 //caso a entrega do livro tenha sido realizada em uma data posterior à data prevista de entrega
 //(defina um valor qualquer de multa por dia de atraso).
 
+export async function devolverLivro(idLivro: ObjectId){
 
+    let emprestimo = await emprestimoRepositorio.buscarEmprestimoLivroId(idLivro);
+    let multa : number = 5;
+    let dataAtual : Date = new Date(); 
+       
+
+        if(emprestimo == null)return "não existe emprestimos com esse titulo";
+
+        let dia = 1000 * 60 * 60 * 24;
+        let diasMulta = (Math.abs(emprestimo.dataEntrega.getTime() - dataAtual.getTime())) / dia;
+
+        if(diasMulta > 0) {
+            return "entrega atrasa: "+diasMulta.toFixed(0)+" dias - multa: "+(diasMulta * multa).toFixed(2);
+        }
+        else {
+            return "entrega realizada - sem multa";
+        }
+    
+}

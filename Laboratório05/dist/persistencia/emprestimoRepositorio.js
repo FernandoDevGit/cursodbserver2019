@@ -32,6 +32,12 @@ class emprestimoRepositorio {
             return false;
         });
     }
+    static buscarEmprestimoLivroId(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let consulta = yield emprestimoModel_1.EmprestimoModel.findOne({ livro: id }).exec();
+            return consulta;
+        });
+    }
     static mudaDataDeEntrega(novaData, idEmprestimo) {
         return __awaiter(this, void 0, void 0, function* () {
             let Emprestimo = yield emprestimoModel_1.EmprestimoModel.findById(idEmprestimo).exec();

@@ -28,6 +28,14 @@ export class emprestimoRepositorio {
         return false;
     }
 
+    static async buscarEmprestimoLivroId(id: ObjectId): Promise<Emprestimo|null>{
+
+        let consulta = await  EmprestimoModel.findOne({ livro: id }).exec();
+
+        return consulta;
+
+   }
+
 
     static async mudaDataDeEntrega( novaData: Date,idEmprestimo: ObjectId): Promise<Emprestimo|null>{
 
